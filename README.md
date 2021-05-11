@@ -1,2 +1,2 @@
-# crudeApp
-a simple crude app with api endpoints
+# crudApp
+a simple crud app with api endpoints
