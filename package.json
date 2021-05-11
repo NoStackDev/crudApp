@@ -1,22 +1,22 @@
 {
-  "name": "crudeapp",
+  "name": "crudapp",
   "version": "1.0.0",
-  "description": "a simple crude app with api endpoints",
+  "description": "a simple crud app with api endpoints",
   "main": "index.js",
   "scripts": {
     "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NoStackDev/crudeApp.git"
+    "url": "git+https://github.com/NoStackDev/crudApp.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NoStackDev/crudeApp/issues"
+    "url": "https://github.com/NoStackDev/crudApp/issues"
   },
-  "homepage": "https://github.com/NoStackDev/crudeApp#readme",
+  "homepage": "https://github.com/NoStackDev/crudApp#readme",
   "devDependencies": {
     "nodemon": "^2.0.7"
   },
