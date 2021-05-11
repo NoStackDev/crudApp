@@ -3,8 +3,7 @@ const User = require('../models/user')
 
 
 // connect to db
-//const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
-const dbURI = 'mongodb://127.0.0.1:27017/test'
+const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
 const db = mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // get users from database
