@@ -3,15 +3,15 @@ const User = require('../models/user')
 
 
 // connect to db
- const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
-//const dbURI = 'mongodb://127.0.0.1:27017/test'
+//const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
+const dbURI = 'mongodb://127.0.0.1:27017/test'
 const db = mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // get users from database
 const getUsers = (req, res) => {
   User.find({}) 
-    .then((data) => {res.json({ message: "successful", data: data })})
-    .catch((error) => {res.json({ error })})
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(200).json({ error })})
 }
 
 
@@ -19,8 +19,8 @@ const getUsers = (req, res) => {
 const getUser = (req, res) => {
   const { id } = req.params
   User.findById(id)
-    .then((data) => {res.json({ message: "successful", data: data })})
-    .catch((error) => {res.json({ error })})
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(200).json({ error })})
 }
 
 
@@ -33,8 +33,8 @@ const createUser = (req, res) => {
     country: country
   })
   user.save()
-    .then((data) => {res.json({ message: "successful", data: data })})
-    .catch((error) => {res.json({ error })})
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(200).json({ error })})
 } 
 
 
@@ -48,8 +48,8 @@ const updateUser = (req, res) => {
     country: country
   }, 
     { upsert: true, new: true, useFindAndModify: false  })
-    .then((data) => {res.json({ message: "successful", data: data })})
-    .catch((error) => {res.json({ error })})
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(200).json({ error })})
 }
 
 
@@ -57,8 +57,8 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res) => {
   const { id } = req.params
   User.findOneAndDelete({_id: id}, { useFindAndModify: false })
-    .then((data) => {res.json({ message: "successful", data: data })})
-    .catch((error) => {res.json({ error })})
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(200).json({ error })})
 }
 
 
