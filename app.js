@@ -30,6 +30,7 @@ app.use(morgan('dev'))
 //route our "/user/*" request through router-user
 app.use('/api/users', user) 
 
+
 app.all('/*', (req, res) => {
   res.status(404).json({error: "endpoint does not exist, please see readme at https://github.com/NoStackDev/crudApp for api documentation"})
 })

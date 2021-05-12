@@ -10,7 +10,7 @@ const db = mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: 
 const getUsers = (req, res) => {
   User.find({}) 
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(400).json({ error })})
+    .catch((error) => {res.status(500).json({ error })})
 }
 
 
@@ -19,7 +19,7 @@ const getUser = (req, res) => {
   const { id } = req.params
   User.findById(id)
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(400).json({ error })})
+    .catch((error) => {res.status(500).json({ error })})
 }
 
 
@@ -33,7 +33,7 @@ const createUser = (req, res) => {
   })
   user.save()
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(400).json({ error })})
+    .catch((error) => {res.status(500).json({ error })})
 } 
 
 
@@ -48,7 +48,7 @@ const updateUser = (req, res) => {
   }, 
     { upsert: true, new: true, useFindAndModify: false  })
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(400).json({ error })})
+    .catch((error) => {res.status(500).json({ error })})
 }
 
 
@@ -57,7 +57,7 @@ const deleteUser = (req, res) => {
   const { id } = req.params
   User.findOneAndDelete({_id: id}, { useFindAndModify: false })
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(400).json({ error })})
+    .catch((error) => {res.status(500).json({ error })})
 }
 
 
