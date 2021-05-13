@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended:false }))
 // parse json
 app.use(express.json())
 // logger
-//app.use(morgan('dev'))
+app.use(morgan('dev'))
 // route our "/user/*" request through router-user
 app.use('/api/users', user) 
 
