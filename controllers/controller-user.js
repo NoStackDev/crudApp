@@ -52,14 +52,21 @@ const createUser = (req, res) => {
 const updateUser = (req, res) => {
   const { id } = req.params
   const { name, email, country } = req.body
-  User.findOneAndUpdate({_id: id}, {
-    name: name,
-    email: email,
-    country: country
-  }, 
-    { upsert: true, new: true, useFindAndModify: false  })
-    .then((data) => {res.status(200).json({ message: "successful", data: data })})
-    .catch((error) => {res.status(500).json({ error })})
+
+  User.findById(id)
+    .then((result) => {
+      const oldDocument = result
+
+      User.findOneAndUpdate({_id: id}, {
+        name: name || oldDocument.name,
+        email: email || oldDocument.email,
+        country: country || oldDocument.country
+      }, 
+      { upsert: true, new: true, useFindAndModify: false  })
+        .then((data) => {res.status(200).json({ message: "successful", data: data })})
+        .catch((error) => {res.status(500).json({ error })})
+    })
+    .catch((error) => {res.status(500).json({ error})})
 }
 
 
