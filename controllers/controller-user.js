@@ -1,14 +1,26 @@
 const mongoose = require('mongoose')
 const User = require('../models/user')
+const { parseQueryObj } = require('../helperFunctions')
 
 
 // connect to db
-const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
+//const dbURI = 'mongodb+srv://emptystackdev:3jfXksAZegrwfMOv@cluster0.sivzb.mongodb.net/crud-app?retryWrites=true&w=majority'
+const dbURI = 'mongodb://127.0.0.1:27017'
 const db = mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+
 
 // get users from database
 const getUsers = (req, res) => {
   User.find({}) 
+    .then((data) => {res.status(200).json({ message: "successful", data: data })})
+    .catch((error) => {res.status(500).json({ error })})
+}
+
+
+// get users matching query
+const getQueriedUsers = (req, res) => {
+  const query = parseQueryObj(req.query)
+  User.find(query)
     .then((data) => {res.status(200).json({ message: "successful", data: data })})
     .catch((error) => {res.status(500).json({ error })})
 }
@@ -65,6 +77,7 @@ const deleteUser = (req, res) => {
 module.exports = {
   db,
   getUsers,
+  getQueriedUsers,
   getUser,
   createUser,
   updateUser,
