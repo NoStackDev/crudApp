@@ -7,7 +7,7 @@ const user = require('./routes/router-user')
 
 const PORT = process.env.PORT || 5000
 
-app = express()
+const app = express()
 
 
 db
