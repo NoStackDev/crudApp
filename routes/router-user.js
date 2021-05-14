@@ -13,7 +13,7 @@ const router = express.Router()
 
 router.route('/query').get(getQueriedUsers)
 router.route('/').get(getUsers).post(createUser)
-router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
+router.route('/:id').get(getUser).put(updateUser).patch(updateUser).delete(deleteUser)
 
 
 module.exports = router

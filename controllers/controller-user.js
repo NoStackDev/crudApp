@@ -48,7 +48,7 @@ const createUser = (req, res) => {
 } 
 
 
-// update  user
+// update  user, patch user
 const updateUser = (req, res) => {
   const { id } = req.params
   const { name, email, country } = req.body
@@ -56,7 +56,7 @@ const updateUser = (req, res) => {
   User.findById(id)
     .then((result) => {
       const oldDocument = result
-
+      // assign values of old document to corresponding field if values for those field are null
       User.findOneAndUpdate({_id: id}, {
         name: name || oldDocument.name,
         email: email || oldDocument.email,
@@ -64,7 +64,6 @@ const updateUser = (req, res) => {
       }, 
       { upsert: true, new: true, useFindAndModify: false  })
         .then((data) => {res.status(200).json({ message: "successful", data: data })})
-        .catch((error) => {res.status(500).json({ error })})
     })
     .catch((error) => {res.status(500).json({ error})})
 }
